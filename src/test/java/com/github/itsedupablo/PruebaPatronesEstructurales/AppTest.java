@@ -1,38 +1,31 @@
-package com.github.itsedupablo.PruebaPatronesEstructurales;
+package test;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import org.junit.Test;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+import models.Elemento;
+import models.Kit;
+import services.Componente;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+public class AppTest {
+    
+    @Test
+    public void testPrecioTotalKitConDescuento() {
+        // Crear elementos simples
+        Componente elemento1 = new Elemento(100, 1);
+        Componente elemento2 = new Elemento(50, 2);
+
+        // Crear un kit y agregar elementos
+        Componente kit = new Kit();
+        kit.agregarComponente(elemento1);
+        kit.agregarComponente(elemento2);
+
+        // Obtener el precio total del kit (con descuento aplicado)
+        double precioTotal = kit.getPrecioTotal();
+        
+        // Comprobar que el precio total es el esperado (150 con 10% de descuento)
+        assertEquals(135, precioTotal, 0.001);
     }
 }
+
